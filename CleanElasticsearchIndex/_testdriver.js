@@ -10,9 +10,9 @@
  */
 
 // Set the region to the locations of the S3 buckets
-process.env['AWS_REGION'] = 'testregion'
-process.env['AWS_ACCESS_KEY_ID'] = 'testaccesskey'
-process.env['AWS_SECRET_ACCESS_KEY'] = 'testsecretkey'
+process.env['AWS_REGION'] = 'testregion';
+process.env['AWS_ACCESS_KEY_ID'] = 'testaccesskey';
+process.env['AWS_SECRET_ACCESS_KEY'] = 'testsecretkey';
 
 var fs = require('fs');
 var app = require('./app');
@@ -24,6 +24,6 @@ var event = JSON.parse(fs.readFileSync('_sampleEvent.json', 'utf8').trim());
 var context = {};
 context.done = function () {
     console.log("Lambda Function Complete");
-}
+};
 
 app.handler(event, context);

@@ -218,6 +218,7 @@ function buildRequest(endpoint, path, method, query, body) {
     var endpointParts = endpoint.match(/^([^\.]+)\.?([^\.]*)\.?([^\.]*)\.amazonaws\.com$/);
     //console.log(JSON.stringify(endpointParts, null, 2));
     var region = endpointParts[2];
+    var service = endpointParts[3];
 
     if (path == null) path = '';
     if (query == null) query = '';
@@ -233,7 +234,7 @@ function buildRequest(endpoint, path, method, query, body) {
     request.headers['Content-Type'] = 'application/json';
 
     var credentials = new AWS.EnvironmentCredentials('AWS');
-    var signer = new AWS.Signers.V4(request, 'es');
+    var signer = new AWS.Signers.V4(request, service);
     signer.addAuthorization(credentials, new Date());
 
     //console.log(JSON.stringify(request, null, 2));
